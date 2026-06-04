@@ -138,6 +138,7 @@ export default function PipelinesPage() {
 
   // Initial load + seed-if-empty
   useEffect(() => {
+    if (!accountId) return;
     let cancelled = false;
     (async () => {
       setLoading(true);
@@ -163,7 +164,7 @@ export default function PipelinesPage() {
     return () => {
       cancelled = true;
     };
-  }, [loadPipelines, seedDefaultPipeline]);
+  }, [accountId, loadPipelines, seedDefaultPipeline]);
 
   // Load stages + deals whenever selected pipeline changes.
   // Clearing on no-selection is a legitimate sync with URL/prop
